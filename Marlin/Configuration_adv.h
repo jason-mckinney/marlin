@@ -451,8 +451,8 @@
 // @section homing
 
 // Homing hits each endstop, retracts by these distances, then does a slower bump.
-#define X_HOME_BUMP_MM 5
-#define Y_HOME_BUMP_MM 5
+#define X_HOME_BUMP_MM 0
+#define Y_HOME_BUMP_MM 0
 #define Z_HOME_BUMP_MM 2
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 //#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
@@ -1027,9 +1027,9 @@
  * See http://marlinfw.org/docs/features/lin_advance.html for full instructions.
  * Mention @Sebastianv650 on GitHub to alert the author of any issues.
  */
-//#define LIN_ADVANCE
+#define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
-  #define LIN_ADVANCE_K 0.22  // Unit: mm compression per 1mm/s extruder speed
+  #define LIN_ADVANCE_K 0  // Unit: mm compression per 1mm/s extruder speed
   //#define LA_DEBUG          // If enabled, this will generate debug information output over USB.
 #endif
 
@@ -1452,7 +1452,7 @@
   #if AXIS_IS_TMC(X)
     #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_MICROSTEPS   16  // 0..256
-    #define X_RSENSE     0.11
+    #define X_RSENSE     0.22
   #endif
 
   #if AXIS_IS_TMC(X2)
@@ -1464,7 +1464,7 @@
   #if AXIS_IS_TMC(Y)
     #define Y_CURRENT     800
     #define Y_MICROSTEPS   16
-    #define Y_RSENSE     0.11
+    #define Y_RSENSE     0.22
   #endif
 
   #if AXIS_IS_TMC(Y2)
@@ -1476,7 +1476,7 @@
   #if AXIS_IS_TMC(Z)
     #define Z_CURRENT     800
     #define Z_MICROSTEPS   16
-    #define Z_RSENSE     0.11
+    #define Z_RSENSE     0.22
   #endif
 
   #if AXIS_IS_TMC(Z2)
@@ -1494,7 +1494,7 @@
   #if AXIS_IS_TMC(E0)
     #define E0_CURRENT    800
     #define E0_MICROSTEPS  16
-    #define E0_RSENSE    0.11
+    #define E0_RSENSE    0.22
   #endif
 
   #if AXIS_IS_TMC(E1)
@@ -1569,9 +1569,9 @@
    * Use Trinamic's ultra quiet stepping mode.
    * When disabled, Marlin will use spreadCycle stepping mode.
    */
-  #define STEALTHCHOP_XY
-  #define STEALTHCHOP_Z
-  #define STEALTHCHOP_E
+  //#define STEALTHCHOP_XY
+  //#define STEALTHCHOP_Z
+  //#define STEALTHCHOP_E
 
   /**
    * Optimize spreadCycle chopper parameters by using predefined parameter sets
@@ -1644,7 +1644,7 @@
    * It is advised to set X/Y/Z_HOME_BUMP_MM to 0.
    * M914 X/Y/Z to live tune the setting
    */
-  //#define SENSORLESS_HOMING // TMC2130 only
+  #define SENSORLESS_HOMING // TMC2130 only
 
   /**
    * Use StallGuard2 to probe the bed with the nozzle.
@@ -1655,8 +1655,8 @@
   //#define SENSORLESS_PROBING // TMC2130 only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
-    #define X_STALL_SENSITIVITY  8
-    #define Y_STALL_SENSITIVITY  8
+    #define X_STALL_SENSITIVITY  3
+    #define Y_STALL_SENSITIVITY  4
     //#define Z_STALL_SENSITIVITY  8
   #endif
 
